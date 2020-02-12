@@ -249,7 +249,9 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
             $optionsStr .= sprintf(' CHARACTER SET %s', $charset[0]);
             $optionsStr .= sprintf(' COLLATE %s', $options['collation']);
         }
-
+        
+        $optionsStr .= ' ROW_FORMAT=DYNAMIC';
+        
         // set the table comment
         if (isset($options['comment'])) {
             $optionsStr .= sprintf(" COMMENT=%s ", $this->getConnection()->quote($options['comment']));
